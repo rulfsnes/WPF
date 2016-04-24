@@ -1,0 +1,14 @@
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\bin\Debug\WpfApplication.exe.config
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\bin\Debug\WpfApplication.exe
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\bin\Debug\WpfApplication.pdb
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.csprojResolveAssemblyReference.cache
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\MainWindow.g.cs
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\App.g.cs
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication_MarkupCompile.cache
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication_MarkupCompile.lref
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\MainWindow.baml
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.g.resources
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.Properties.Resources.resources
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.csproj.GenerateResource.Cache
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.exe
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.pdb
