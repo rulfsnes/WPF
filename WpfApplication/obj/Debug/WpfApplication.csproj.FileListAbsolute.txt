@@ -12,3 +12,5 @@ C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.Propert
 C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.csproj.GenerateResource.Cache
 C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.exe
 C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.pdb
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\Simple Styles.baml
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\App.baml
