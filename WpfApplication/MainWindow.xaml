@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication"
         mc:Ignorable="d"
-        Title="OSD Frontend 2016" Height="577.839" Width="442.956" Icon="DSC00959_bw - Copy.jpg" BorderBrush="#FF8B8B8B">
+        Title="OSD Frontend 2016" Height="577.839" Width="442.956" BorderBrush="#FF8B8B8B" Background="#FF7E7E7E" Foreground="{x:Null}" Visibility="Visible" Style="{DynamicResource WindowStyle1}">
     <Window.Resources>
         <Color x:Key="SystemBackground">#FF7E7E7E</Color>
         <ControlTemplate x:Key="MenuItemControlTemplate1" TargetType="{x:Type MenuItem}">
@@ -70,12 +70,76 @@
             <Setter Property="TextWrapping" Value="NoWrap"/>
             <Setter Property="TextTrimming" Value="None"/>
         </Style>
+        <ControlTemplate x:Key="WindowTemplateKey" TargetType="{x:Type Window}">
+            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                <Grid>
+                    <AdornerDecorator>
+                        <ContentPresenter/>
+                    </AdornerDecorator>
+                    <ResizeGrip x:Name="WindowResizeGrip" HorizontalAlignment="Right" IsTabStop="false" Visibility="Collapsed" VerticalAlignment="Bottom"/>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="ResizeMode" Value="CanResizeWithGrip"/>
+                        <Condition Property="WindowState" Value="Normal"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Visibility" TargetName="WindowResizeGrip" Value="Visible"/>
+                </MultiTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="WindowStyle1" TargetType="{x:Type Window}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <AdornerDecorator>
+                                <ContentPresenter/>
+                            </AdornerDecorator>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                    <Setter Property="Template" Value="{StaticResource WindowTemplateKey}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="LabelStyle1" TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
-    <Window.Background>
-        <SolidColorBrush Color="{DynamicResource SystemBackground}"/>
-    </Window.Background>
     <Grid Height="24" VerticalAlignment="Top" Margin="0,0,2,0">
-        <Menu x:Name="menu" Margin="0,0,14,2.272">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="248*"/>
+            <ColumnDefinition Width="185*"/>
+        </Grid.ColumnDefinitions>
+        <UniformGrid Height="76.667" Margin="1.333,0,0.289,-131.667" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+            <ComboBox x:Name="comboBox" Margin="0,24,-2,32.667" Background="Black"/>
+        </UniformGrid>
+        <Menu x:Name="menu" Margin="0,0,14,2.272" Grid.ColumnSpan="2">
             <Menu.Background>
                 <SolidColorBrush Color="{DynamicResource SystemBackground}"/>
             </Menu.Background>
@@ -83,7 +147,7 @@
                 <MenuItem.Background>
                     <SolidColorBrush Color="{DynamicResource SystemBackground}"/>
                 </MenuItem.Background>
-                <MenuItem Header="Connect to server" Foreground="White">
+                <MenuItem Name="menuItemComputerName" Header="Connect to server" Foreground="White">
                     <MenuItem.Background>
                         <SolidColorBrush Color="{DynamicResource SystemBackground}"/>
                     </MenuItem.Background>
@@ -115,7 +179,7 @@
                         <SolidColorBrush Color="{DynamicResource SystemBackground}"/>
                     </MenuItem.Background>
                 </MenuItem>
-                <MenuItem Header="Exit">
+                <MenuItem Name="menuItemExit" Header="Exit">
                     <MenuItem.Background>
                         <SolidColorBrush Color="{DynamicResource SystemBackground}"/>
                     </MenuItem.Background>
@@ -134,23 +198,25 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Grid Height="37.272" Margin="1.333,0,7.333,-36.667" VerticalAlignment="Bottom">
-            <Popup/>
-            <Label x:Name="label" Content="Computer Name:" HorizontalAlignment="Left" Margin="2,3.667,0,5.605" Width="102.667">
+        <Grid Height="37.272" Margin="0,0,7.333,-36.667" VerticalAlignment="Bottom" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="424.29">
+            <Label x:Name="label_ComputerName" Content="{Binding ComputerName, UpdateSourceTrigger=Default}" FontStyle="{Binding StartStyle}" BorderBrush="Black" Style="{DynamicResource LabelStyle1}" BorderThickness="1"  Margin="9,4,0,5.272" HorizontalAlignment="Left" Width="179.167">
                 <Label.Foreground>
                     <SolidColorBrush Color="{DynamicResource Text}"/>
                 </Label.Foreground>
             </Label>
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="102.667,7.605,0,9" TextWrapping="Wrap" Width="108" IsReadOnly="True"/>
-            <Label x:Name="label_Copy" Content="Mac Address:" Margin="219.333,4.334,0,4.938" HorizontalAlignment="Left" Width="83.667">
+            <Popup Name="popUpConnect" Margin="0,0,176.315,13.272" ToolTip="Enter the configuration manager site server">
+                <Grid Height="101" Width="226" Background="#FF9E9E9E">
+                    <TextBox x:Name="textBox" Margin="41,36,42,0" TextWrapping="Wrap" Text="{Binding SiteServer}" Height="24" VerticalAlignment="Top"/>
+                    <Label x:Name="label" Content="Enter siteserver" Height="37" Margin="36.667,6.333,67.333,0" VerticalAlignment="Top"/>
+                    <Button Name="buttonpopOutOK" Content="Connect" VerticalAlignment="Bottom" Margin="42,0,109,8.04"/>
+                    <Button Name="buttonpopOutCancel" Content="Cancel" VerticalAlignment="Bottom" Margin="0,0,18,8.04" HorizontalAlignment="Right" Width="75"/>
+                </Grid>
+            </Popup>
+            <Label Name="label_MacAddress" Content="{Binding MacAddress, UpdateSourceTrigger=PropertyChanged}" FontStyle="{Binding StartStyle}" BorderBrush="Black" Style="{DynamicResource LabelStyle1}" BorderThickness="1" RenderTransformOrigin="1.347,0.403" Margin="0,3.667,14.624,5.605" HorizontalAlignment="Right" Width="181.667" >
                 <Label.Foreground>
                     <SolidColorBrush Color="{DynamicResource Text}"/>
                 </Label.Foreground>
             </Label>
-            <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Margin="309,8.272,0,8.333" TextWrapping="Wrap" Width="108" IsReadOnly="True"/>
         </Grid>
-        <UniformGrid Height="76.667" Margin="1.333,0,0.289,-131.667" VerticalAlignment="Bottom">
-            <ComboBox x:Name="comboBox" Margin="0,24,-2,32.667" Background="Black"/>
-        </UniformGrid>
     </Grid>
 </Window>

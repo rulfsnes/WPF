@@ -18,11 +18,19 @@ namespace WpfApplication
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    public class MainViewModel
+    {
+        public string ComputerName="Computer Name:";
+    }
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
+            DataContext = new MainViewModel();
+            Console.Write(this.DataContext);
             InitializeComponent();
         }
+        
     }
 }
