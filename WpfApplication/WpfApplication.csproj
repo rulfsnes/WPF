@@ -56,9 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Presenter.cs" />
+    <Compile Include="ObservableObject.cs" />
     <Compile Include="LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TextConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +84,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DelegateCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
