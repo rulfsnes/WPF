@@ -14,4 +14,5 @@ C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Release\WpfApplication.Prope
 C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Release\WpfApplication.csproj.GenerateResource.Cache
 C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Release\WpfApplication.exe
 C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Release\WpfApplication.pdb
-C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Release\LoginScreen.g.cs
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Release\LoginScreen.baml

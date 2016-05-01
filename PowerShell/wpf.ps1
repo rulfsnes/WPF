@@ -34,17 +34,25 @@ Class AnotherContext{
 }
 $AnotherContext = New-Object -TypeName AnotherContext
 $WindowDataContext = New-Object -TypeName FrontendContext
-[xml]$xaml = Get-Content "C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\MainWindow.xaml"
+[xml]$LoginXAML = Get-Content "C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\LoginScreen.xaml" -Force | ForEach-Object{$_.Replace("x:Name","Name")}
+[xml]$xaml = Get-Content "C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\MainWindow.xaml" -Force | ForEach-Object{$_.Replace("x:Name","Name")}
 $xaml.DocumentElement.RemoveAttribute("x:Class")
 $xaml.DocumentElement.RemoveAttribute("mc:Ignorable")
 $xaml.DocumentElement.RemoveAttribute("xmlns:d")
-
+$LoginXAML.DocumentElement.RemoveAttribute("x:Class")
+$LoginXAML.DocumentElement.RemoveAttribute("mc:Ignorable")
+$LoginXAML.DocumentElement.RemoveAttribute("xmlns:d")
 # Add assemblies
 Add-Type -AssemblyName PresentationFramework,PresentationCore,WindowsBase
 
 # Make window
 $Window = [Windows.Markup.XamlReader]::Load((New-Object System.Xml.XmlNodeReader $xaml))
+$Login = [Windows.Markup.XamlReader]::Load((New-Object System.Xml.XmlNodeReader $LoginXAML))
+
 $xaml.SelectNodes("//*[@Name]") | Foreach-Object { Set-Variable -Name (("Window" + "_" + $_.Name)) -Value $Window.FindName($_.Name) }
+$LoginXAML.SelectNodes("//*[@Name]") | Foreach-Object { Set-Variable -Name (("Window" + "_" + $_.Name)) -Value $Login.FindName($_.Name) }
+
+
 $Window.DataContext = $WindowDataContext
 
 $Window_menuItemComputerName.add_click({
@@ -57,4 +65,5 @@ $Window_buttonpopOutCancel.add_Click({
 $Window_menuItemExit.add_click({
     $Window.Close()
 })
-$Window.ShowDialog() | Out-Null
+#$Window.ShowDialog() | Out-Null
+

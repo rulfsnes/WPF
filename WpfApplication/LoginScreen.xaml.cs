@@ -22,6 +22,13 @@ namespace WpfApplication
         public Window1()
         {
             InitializeComponent();
+            buttonCancel.Click =
+        }
+
+        private void textBoxUserName_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+            textBoxUserName.Text = "";
         }
     }
 }
