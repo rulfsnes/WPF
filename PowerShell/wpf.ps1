@@ -50,11 +50,27 @@ $Window = [Windows.Markup.XamlReader]::Load((New-Object System.Xml.XmlNodeReader
 $Login = [Windows.Markup.XamlReader]::Load((New-Object System.Xml.XmlNodeReader $LoginXAML))
 
 $xaml.SelectNodes("//*[@Name]") | Foreach-Object { Set-Variable -Name (("Window" + "_" + $_.Name)) -Value $Window.FindName($_.Name) }
-$LoginXAML.SelectNodes("//*[@Name]") | Foreach-Object { Set-Variable -Name (("Window" + "_" + $_.Name)) -Value $Login.FindName($_.Name) }
+$LoginXAML.SelectNodes("//*[@Name]") | Foreach-Object { Set-Variable -Name (("Login" + "_" + $_.Name)) -Value $Login.FindName($_.Name) }
 
 
 $Window.DataContext = $WindowDataContext
 
+$Login_checkBoxSSO.Add_Checked({
+    switch($this.IsChecked){
+        $true {
+            $Login_textBoxUserName.IsReadOnly = $true
+            $Login_textBoxUserName.Text = $env:USERNAME
+        }
+        $false {
+            $Login_textBoxUserName.IsReadOnly = $false
+            $Login_textBoxUserName.Text = ""
+        }
+    }
+})
+
+$Login_buttonCancel.Add_Click({
+    $Login.Close()
+})
 $Window_menuItemComputerName.add_click({
     $Window_popUpConnect.IsOpen = $true
 })
@@ -65,5 +81,6 @@ $Window_buttonpopOutCancel.add_Click({
 $Window_menuItemExit.add_click({
     $Window.Close()
 })
+$Login.ShowDialog()
 #$Window.ShowDialog() | Out-Null
 
