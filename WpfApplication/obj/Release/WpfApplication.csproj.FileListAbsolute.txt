@@ -1,0 +1,1 @@
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\bin\Release\WpfApplication.exe.config
