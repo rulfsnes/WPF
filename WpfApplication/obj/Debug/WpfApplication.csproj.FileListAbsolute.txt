@@ -14,3 +14,5 @@ C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.exe
 C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\WpfApplication.pdb
 C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\Simple Styles.baml
 C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\App.baml
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\LoginScreen.g.cs
+C:\Users\Rasmus\Source\Repos\WPF\WpfApplication\obj\Debug\LoginScreen.baml
